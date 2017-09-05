@@ -1,0 +1,79 @@
+
+******  DataFlow Result for function add  ******
+{ b a }
+entry:
+  %add = add nsw i32 %a, %b
+  %cmp = icmp sgt i32 %add, 8
+  br i1 %cmp, label %if.then, label %if.else
+{ cmp add b a }
+---
+{ cmp add b a }
+if.then:                                          ; preds = %entry
+  %call = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str, i32 0, i32 0))
+  br label %if.end
+{ call cmp add b a }
+---
+{ cmp add b a }
+if.else:                                          ; preds = %entry
+  br label %if.end
+{ cmp add b a }
+---
+{ call cmp add b a }
+if.end:                                           ; preds = %if.else, %if.then
+  ret i32 undef
+{ call cmp add b a }
+---
+phiNodeinside LoopphiNodeinside LoopphiNodeinside LoopphiNodeinside LoopphiNodeinside Loop
+******  DataFlow Result for function main  ******
+{ }
+entry:
+  br label %for.cond
+{ }
+---
+{ inc5 cmp2 q.0 cmp p.0 }
+for.cond:                                         ; preds = %for.inc4, %entry
+  %p.0 = phi i32 [ 0, %entry ], [ %inc5, %for.inc4 ]
+  %cmp = icmp slt i32 %p.0, 5
+  br i1 %cmp, label %for.body, label %for.end6
+{ cmp2 q.0 cmp p.0 }
+---
+{ cmp2 q.0 cmp p.0 }
+for.body:                                         ; preds = %for.cond
+  br label %for.cond1
+{ cmp2 q.0 cmp p.0 }
+---
+{ inc cmp2 q.0 cmp p.0 }
+for.cond1:                                        ; preds = %for.inc, %for.body
+  %q.0 = phi i32 [ 0, %for.body ], [ %inc, %for.inc ]
+  %cmp2 = icmp slt i32 %q.0, 4
+  br i1 %cmp2, label %for.body3, label %for.end
+{ cmp2 q.0 cmp p.0 }
+---
+{ cmp2 q.0 cmp p.0 }
+for.body3:                                        ; preds = %for.cond1
+  br label %for.inc
+{ cmp2 q.0 cmp p.0 }
+---
+{ cmp2 q.0 cmp p.0 }
+for.inc:                                          ; preds = %for.body3
+  %inc = add nsw i32 %q.0, 1
+  br label %for.cond1
+{ inc cmp2 q.0 cmp p.0 }
+---
+{ cmp2 q.0 cmp p.0 }
+for.end:                                          ; preds = %for.cond1
+  br label %for.inc4
+{ cmp2 q.0 cmp p.0 }
+---
+{ cmp2 q.0 cmp p.0 }
+for.inc4:                                         ; preds = %for.end
+  %inc5 = add nsw i32 %p.0, 1
+  br label %for.cond
+{ inc5 cmp2 q.0 cmp p.0 }
+---
+{ cmp2 q.0 cmp p.0 }
+for.end6:                                         ; preds = %for.cond
+  %call = call i32 @add(i32 3, i32 4)
+  ret i32 0
+{ call cmp2 q.0 cmp p.0 }
+---

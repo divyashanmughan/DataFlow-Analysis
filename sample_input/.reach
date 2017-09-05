@@ -1,0 +1,18 @@
+opt: /work/04355/dshanmug/llvm-3.9.1.src/include/llvm/PassAnalysisSupport.h:222: AnalysisType& llvm::Pass::getAnalysis() const [with AnalysisType = llvm::LoopInfoWrapperPass]: Assertion `Resolver && "Pass has not been inserted into a PassManager object!"' failed.
+#0 0x0000000002b05194 (opt+0x2b05194)
+#1 0x0000000002b05556 (opt+0x2b05556)
+#2 0x0000000002b03872 (opt+0x2b03872)
+#3 0x0000000002b04ae6 (opt+0x2b04ae6)
+#4 0x000000300100f7e0 __restore_rt (/lib64/libpthread.so.0+0x300100f7e0)
+#5 0x00000030004325e5 __GI_raise (/lib64/libc.so.6+0x30004325e5)
+#6 0x0000003000433dc5 __GI_abort (/lib64/libc.so.6+0x3000433dc5)
+#7 0x000000300042b70e __assert_fail_base (/lib64/libc.so.6+0x300042b70e)
+#8 0x000000300042b7d0 __GI___assert_perror_fail (/lib64/libc.so.6+0x300042b7d0)
+#9 0x00000000015621f0 (opt+0x15621f0)
+#10 0x00002b9747351b92 reachAnal::Reach::Reach() /work/04355/dshanmug/dataFlow/reach.h:48:0
+#11 0x00002b9747357278 llvm::Pass* llvm::callDefaultCtor<reachAnal::Reach>() /work/04355/dshanmug/llvm-3.9.1.src/include/llvm/PassSupport.h:79:0
+#12 0x00000000012f761a (opt+0x12f761a)
+#13 0x000000300041ed1d __libc_start_main (/lib64/libc.so.6+0x300041ed1d)
+#14 0x00000000012ddad9 (opt+0x12ddad9)
+Stack dump:
+0.	Program arguments: opt -load ./reach.so -reach input.bc -disable-output 

@@ -1,4 +1,6 @@
 # DataFlow-Analysis
+An LLVM pass which designes a general parameterized iterative data-flow analysis framework, which can be used for Liveness Analysis and Reaching Definition Analysis.
+
 The "dataFlowAnalysis.h" file consists of the base template class, from which live analysis and reaching
 definition analysis passes  derive.This file consists of DataFlowAnalysis class which has a data member
 "direction" of type bool, which is used to identify whether it is forward or backward analysis.It is a templated
